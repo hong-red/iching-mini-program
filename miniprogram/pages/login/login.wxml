@@ -1,0 +1,80 @@
+<!-- miniprogram/pages/login/login.wxml -->
+<view class="page-container">
+  <!-- 背景渐变层 -->
+  <view class="bg-gradient"></view>
+
+  <view class="scroll-wrapper">
+    <view class="scroll-content">
+      <!-- Logo + 标题区 -->
+      <view class="header-section">
+        <image
+          class="app-logo"
+          src="../../images/app_logo.png"
+          mode="aspectFit"
+          lazy-load="true"
+        />
+        <text class="app-name">卦象奇缘</text>
+        <text class="app-slogan">一卦解惑，一缘定情</text>
+        <text class="welcome-text">欢迎回来，愿你今日心想事成</text>
+      </view>
+
+      <!-- 小功能卡片（占位，未来可扩展） -->
+      <view class="feature-cards">
+        <view class="feature-card">
+          <image src="../../images/icon-fortune.png" mode="aspectFit" />
+          <text>今日运势</text>
+        </view>
+        <view class="feature-card">
+          <image src="../../images/icon-match.png" mode="aspectFit" />
+          <text>缘分匹配</text>
+        </view>
+        <view class="feature-card">
+          <image src="../../images/icon-tarot.png" mode="aspectFit" />
+          <text>塔罗占卜</text>
+        </view>
+      </view>
+
+      <!-- 登录按钮 + 协议 -->
+      <view class="login-section">
+        <button
+          class="login-btn"
+          open-type="getUserInfo"
+          bindgetuserinfo="onGetUserInfo"
+          disabled="{{!hasAgreedPrivacy}}"
+          hover-class="btn-hover"
+        >
+          <image
+            class="wechat-icon"
+            src="../../images/icon_bell.png"
+            mode="aspectFit"
+          />
+          <text>微信一键登录</text>
+        </button>
+
+        <view class="privacy-agreement">
+          <checkbox-group bindchange="togglePrivacyAgreement">
+            <label class="checkbox-label">
+              <checkbox
+                value="agree"
+                checked="{{hasAgreedPrivacy}}"
+                color="#555"
+              />
+              <text class="agreement-text">我已阅读并同意</text>
+            </label>
+          </checkbox-group>
+          <text class="privacy-link" bindtap="goToUserAgreement">《用户协议》</text>
+          <text class="agreement-text">和</text>
+          <text class="privacy-link" bindtap="goToPrivacyPolicy">《隐私政策》</text>
+        </view>
+
+        <text class="tip-text">登录即代表同意隐私条款，数据仅用于提升服务</text>
+      </view>
+
+      <!-- 版权 -->
+      <view class="footer">
+        <text>© 2026 卦象奇缘</text>
+        <text>由小程序团队倾心打造</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+/* miniprogram/pages/agreement/privacy-policy.wxss */
+.container {
+  padding: 30rpx;
+  font-size: 32rpx;
+  line-height: 1.6;
+  color: #333;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 40rpx;
+  color: #333;
+}
+
+.content {
+  height: calc(100vh - 150rpx); /* 减去标题和padding的高度 */
+  white-space: pre-wrap; /* 保留文本中的换行符和空格 */
+}

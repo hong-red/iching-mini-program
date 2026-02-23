@@ -1,0 +1,110 @@
+/* miniprogram/pages/notifications/notifications.wxss */
+/* 复用个人中心样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+  background-color: #f6f4ec;
+  min-height: 100vh;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 40rpx 20rpx;
+  width: 100%;
+  background: #fbfaf6;
+  border-radius: 20rpx;
+  border: 1rpx solid #e7e0cf;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 30rpx;
+}
+
+.notif-icon {
+  width: 176rpx;
+  height: 176rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+  border: 4rpx solid #e7e0cf;
+  background: #efe9db;
+  padding: 20rpx; /* 增加内边距让图标居中且不贴边 */
+  box-sizing: border-box;
+}
+
+.hint {
+  font-size: 26rpx;
+  color: #7a756c;
+  margin-top: 10rpx;
+}
+
+.title-badge {
+  margin-top: 8rpx;
+  padding: 6rpx 16rpx;
+  font-size: 26rpx;
+  color: #6b5a45;
+  background: #efe9db;
+  border-radius: 24rpx;
+}
+
+.form-card {
+  width: 100%;
+  background: #fbfaf6;
+  border-radius: 20rpx;
+  border: 1rpx solid #e7e0cf;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.06);
+  padding: 10rpx 0 30rpx;
+}
+
+.notification-list {
+  padding: 0 30rpx;
+}
+
+.notification-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e7e0cf;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+
+.notif-title {
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #3a3a3a;
+}
+
+.notif-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.notif-content {
+  font-size: 28rpx;
+  color: #5b5751;
+  line-height: 1.5;
+}
+
+.action-btn {
+  margin-top: 20rpx;
+  background-color: #d4a017; /* 金色 */
+  color: white;
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  line-height: 1.5;
+}
+
+.empty-state {
+  margin-top: 100rpx;
+  color: #999;
+  font-size: 30rpx;
+}

@@ -1,0 +1,245 @@
+/* miniprogram/pages/login/login.wxss */
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #f6f4ec;
+}
+
+/* 移除 bg-gradient 样式 */
+
+.scroll-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 92%;
+  max-width: 680rpx;
+  margin: 40rpx auto;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
+  border-radius: 10rpx;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-top, .scroll-bottom {
+  width: 100%;
+  height: auto; /* 保持图片比例 */
+  display: block;
+}
+
+.scroll-content {
+  width: 100%;
+  padding: 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fbfaf6;
+  border-left: 1rpx solid #e7e0cf;
+  border-right: 1rpx solid #e7e0cf;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.header-section {
+  margin-bottom: 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-logo {
+  width: 180rpx; /* 调整尺寸 */
+  height: 180rpx; /* 调整尺寸 */
+  border-radius: 50%;
+  box-shadow: none; /* 移除蓝色阴影 */
+  background-color: transparent; /* 背景透明 */
+  margin-bottom: 30rpx;
+}
+
+.app-name {
+  font-size: 68rpx;
+  font-weight: bold;
+  color: #333; /* 更深的墨色 */
+  margin-bottom: 10rpx;
+  letter-spacing: 2rpx;
+}
+
+.app-slogan {
+  font-size: 32rpx;
+  color: #666; /* 柔和的灰色 */
+  opacity: 0.9;
+  margin-bottom: 40rpx;
+}
+
+.welcome-text {
+  font-size: 36rpx;
+  color: #555; /* 较深的灰色 */
+  font-weight: 500;
+  margin-top: 20rpx;
+}
+
+.feature-cards {
+  display: flex;
+  justify-content: space-between; /* 调整为 space-between */
+  width: 100%;
+  margin-bottom: 80rpx;
+  box-sizing: border-box; /* 添加 box-sizing */
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20rpx;
+  padding: 20rpx 10rpx;
+  box-shadow: none;
+  width: 30%;
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+  border: 1rpx solid #e7e0cf;
+}
+
+.feature-card:active {
+  transform: translateY(4rpx);
+}
+
+.feature-card image {
+  width: 96rpx; /* 放大以适配水墨插画 */
+  height: 96rpx; /* 放大以适配水墨插画 */
+  margin-bottom: 10rpx;
+}
+
+.feature-card text {
+  font-size: 28rpx;
+  color: #444;
+}
+
+.login-section {
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.login-btn {
+  width: 100%;
+  height: 128rpx;
+  padding: 0 36rpx;
+  box-sizing: border-box;
+  font-size: 42rpx;
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  color: #2f2f2f;
+  background-color: #f1ede6;
+  border: 2rpx solid #b7a68b;
+  border-radius: 64rpx;
+  box-shadow: 0 6rpx 14rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40rpx;
+  transition: all 0.25s;
+}
+
+.login-btn[disabled] {
+  background-color: #e0e0e0;
+  border-color: #ddd;
+  box-shadow: none;
+  opacity: 0.7;
+  color: #999;
+}
+
+.login-btn:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 10rpx 18rpx rgba(0, 0, 0, 0.12);
+}
+
+.login-btn text {
+  white-space: nowrap;
+}
+
+.wechat-icon {
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 24rpx;
+  filter: grayscale(100%);
+  opacity: 0.8;
+}
+
+.privacy-agreement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 26rpx;
+  color: #5b5751;
+  margin-bottom: 20rpx;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+/* Custom checkbox style */
+checkbox .wx-checkbox-input {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  border: 2rpx solid #999; /* 柔和的边框颜色 */
+  background-color: #fff;
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background-color: #555; /* 墨色背景 */
+  border-color: #555; /* 墨色边框 */
+}
+
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.agreement-text {
+  margin: 0 6rpx;
+}
+
+.privacy-link {
+  color: #6b5a45;
+  text-decoration: underline;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: #999; /* 柔和的灰色 */
+  margin-top: 20rpx;
+}
+
+.footer {
+  margin-top: 80rpx;
+  font-size: 24rpx;
+  color: #999; /* 柔和的灰色 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(60rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-hover {
+  transform: scale(1.05);
+  transition: transform 0.15s;
+}

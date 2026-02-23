@@ -1,0 +1,41 @@
+<!--miniprogram/pages/profile/profile.wxml-->
+<view class="container">
+  <view class="profile-card" style="width: 670rpx; height: 272rpx; display: flex; box-sizing: border-box">
+    <image class="avatar" src="{{avatar}}" mode="aspectFill" bindtap="changeAvatar"></image>
+    <text class="hint">默认头像为小女孩，如需更换可后续支持</text>
+    <text class="title-badge" wx:if="{{title}}">称号：{{title}}</text>
+  </view>
+
+  <view class="form-card" style="height: 1083rpx; display: block; box-sizing: border-box">
+    <view class="form-item">
+      <text class="label">用户名称</text>
+      <input class="input" placeholder="请输入昵称" value="{{nickname}}" bindinput="onNameInput" maxlength="20"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">绑定电话</text>
+      <input class="input" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">出生日期</text>
+      <picker mode="date" value="{{birthday}}" bindchange="onDateChange" start="1950-01-01" end="2030-12-31">
+        <view class="picker-text">{{birthday || '请选择出生日期'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">性别</text>
+      <radio-group class="gender-group" bindchange="onGenderChange">
+        <label class="gender-option">
+          <radio value="男" checked="{{gender==='男'}}"/> 男
+        </label>
+        <label class="gender-option">
+          <radio value="女" checked="{{gender==='女'}}"/> 女
+        </label>
+      </radio-group>
+    </view>
+
+    <button class="save-btn" bindtap="saveProfile" style="height: 129rpx; display: block; box-sizing: border-box; left: -8rpx; top: 0rpx; width: 358rpx">保存资料</button>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+<!-- pages/knowledge/knowledge.wxml -->
+<view class="container">
+  <!-- 顶部搜索和进度条 -->
+  <view class="header-section">
+    <view class="search-bar">
+      <input class="search-input" placeholder="搜索卦象名称或含义" value="{{searchKeyword}}" bindinput="onSearchInput" />
+    </view>
+    <view class="progress-text">{{unlockedGuaCount || 0}}/{{totalGuaCount || 64}} 已解锁</view>
+    <view class="progress-bar-container">
+      <view class="progress-bar" style="width: {{progressPercent || 0}}%;"></view>
+    </view>
+  </view>
+
+  <!-- 卦象卡片网格 -->
+  <scroll-view scroll-y class="gua-card-scroll-view">
+    <view class="gua-card-grid">
+      <block wx:for="{{filteredGuaList}}" wx:key="name">
+        <view class="gua-card" bindtap="goToGuaDetail" data-gua-name="{{item.name}}">
+          <view class="gua-symbol">{{item.symbol}}</view>
+          <view class="gua-name">{{item.name}}</view>
+          <view class="gua-meaning">{{item.meaning}}</view>
+          <view class="gua-hint">{{item.core}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+</view>

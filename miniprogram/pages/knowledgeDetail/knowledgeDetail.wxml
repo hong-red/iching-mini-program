@@ -1,0 +1,47 @@
+<!-- pages/knowledgeDetail/knowledgeDetail.wxml -->
+<view class="container">
+  <block wx:if="{{gua}}">
+    <view class="gua-symbol-box">
+      <view class="gua-symbol gua-symbol-as-image">{{gua.symbol}}</view>
+    </view>
+    <view class="gua-name-box">
+      <view class="gua-name">{{gua.name}}</view>
+    </view>
+
+    <view class="gua-section">
+      <text class="section-title">传统含义</text>
+      <text class="section-content">{{gua.meaning}}</text>
+    </view>
+
+    <view class="gua-section">
+      <text class="section-title">核心思想</text>
+      <text class="section-content">{{gua.core}}</text>
+    </view>
+
+    <view class="gua-section">
+      <text class="section-title">儿童解释</text>
+            <text class="section-content">{{gua.kidExplain}}</text>
+          </view>
+
+          <view class="gua-section">
+            <text class="section-title">AI 智能解释</text>
+            <block wx:if="{{loadingAIExplanation}}">
+              <text class="loading-text">AI 正在努力思考中...</text>
+            </block>
+            <block wx:elif="{{!showFullAIExplanation}}">
+              <button class="ai-explanation-toggle-button" bindtap="toggleAIExplanation">了解更多详情</button>
+            </block>
+            <block wx:else>
+              <rich-text class="section-content" nodes="{{aiExplanation}}"></rich-text>
+              <button class="ai-explanation-toggle-button" bindtap="toggleAIExplanation">收起</button>
+            </block>
+          </view>
+
+    <!-- 收集卡片按钮 (待实现) -->
+    <button class="collect-button" bindtap="collectCard">收集卡片</button>
+
+  </block>
+  <block wx:else>
+    <text>卦象信息加载中...</text>
+  </block>
+</view>

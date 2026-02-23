@@ -1,0 +1,73 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkSiteMap": true,
+    "checkAppCode": true,
+    "checkPackageJson": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "preloadWholePackage": false,
+    "autoFetchGraphics": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "condition": {
+      "search": {
+        "list": []
+      },
+      "conversation": {
+        "list": []
+      },
+      "plugin": {
+        "list": []
+      },
+      "sitemap": {
+        "list": []
+      },
+      "simulate": {
+        "list": []
+      }
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "latest",
+  "appid": "wxd73c9b30a53a1ac8",
+  "projectname": "卦象奇缘",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "is  sitemap.json": true,
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

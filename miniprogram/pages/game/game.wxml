@@ -1,0 +1,62 @@
+<!-- pages/game/game.wxml -->
+<view class="container">
+  <!-- 隐藏的 canvas 用于生成图片 -->
+  <canvas canvas-id="guaCanvas" style="width: 200px; height: 200px; position: fixed; left: -9999px;"></canvas>
+
+  <!-- 卦象显示区 -->
+  <view class="gua-display-card">
+    <block wx:if="{{yaoLines.length === 0}}">
+      <!-- 初始状态显示问号 -->
+      <text class="initial-question-mark">?</text>
+    </block>
+    <block wx:else>
+      <!-- 摇卦后显示卦象图片 -->
+      <text class="generated-gua-symbol">{{currentGua.symbol}}</text>
+    </block>
+  </view>
+
+  <!-- 等待摇卦/卦象解释区 -->
+  <view class="info-card">
+    <block wx:if="{{yaoLines.length === 0}}">
+      <text class="info-title">等待摇卦</text>
+      <text class="info-text">摇一摇，看看今天的提醒吧!</text>
+      <text class="info-text">卦象解释</text>
+      <text class="info-text">摇一摇，看看今天的提醒吧!</text>
+    </block>
+    <block wx:else>
+      <text class="info-title">{{currentGua.name}}</text>
+      <text class="info-text">{{currentGua.explanation}}</text>
+
+      <!-- AI智能解释（特殊卡片） -->
+      <view wx:if="{{!loadingAIExplanation && aiExplanation}}" class="ai-explain-card">
+        <view class="ai-title">AI 智慧解读</view>
+        <rich-text class="ai-content" nodes="{{aiExplanation}}"></rich-text>
+        <view class="ai-tip">由 Kimi 智能生成，仅供参考与启发</view>
+      </view>
+      <view wx:if="{{loadingAIExplanation}}" class="ai-loading-card">
+        <text class="loading-text">AI 正在努力思考中...</text>
+      </view>
+      <view wx:if="{{hasBianGua}}" class="bian-gua-transition">
+        <text>↓</text>
+        <view class="bian-gua-explanation">事情在变化，继续努力就好。</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 下半部：按钮组 -->
+  <view class="button-group">
+    <button class="action-button shake-button" bindtap="oneClickShake">一键摇卦</button>
+    <button class="action-button save-button" bindtap="saveToGarden">保存到花园</button>
+  </view>
+
+  <!-- 额外：历史记录区 -->
+  <view class="history-toggle" bindtap="toggleHistory">
+    <text>历史记录 (最近5次)</text>
+    <text>{{showHistory ? '▲' : '▼'}}</text>
+  </view>
+  <view wx:if="{{showHistory}}" class="history-list">
+    <block wx:for="{{historyGua}}" wx:key="index">
+      <view class="history-item" bindtap="goToKnowledgeDetail" data-guaname="{{item.name}}">{{item.name}} - {{item.date}}</view>
+    </block>
+  </view>
+</view>

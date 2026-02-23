@@ -1,0 +1,55 @@
+<view class="container">
+  <!-- 顶部区域 -->
+  <view class="header">
+    <view class="header-left"></view>
+    <view class="header-center">卦象奇缘</view>
+    <view class="header-right">
+      <image class="avatar-placeholder" src="../../images/avatar.png" mode="aspectFill"></image>
+      <image class="bell-placeholder" src="../../images/icon_bell.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 轮播图区域 -->
+  <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="5000" duration="500">
+    <swiper-item>
+      <image src="../../images/swiper_1.jpg" mode="aspectFill" />
+      <view class="swiper-text">伏羲画卦的宁静起源</view>
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/swiper_2.jpg" mode="aspectFill" />
+      <view class="swiper-text">孩子在花园观察发光植物</view>
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/swiper_3.jpg" mode="aspectFill" />
+      <view class="swiper-text">摇一卦，得今日智慧</view>
+    </swiper-item>
+    <swiper-item>
+      <image src="../../images/swiper_4.jpg" mode="aspectFill" />
+      <view class="swiper-text">亲子共读东方哲学</view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 功能卡片区域 -->
+  <view class="card-grid">
+    <view class="card" bindtap="goToKnowledge">
+      <image class="card-icon" src="../../images/card_knowledge.png" mode="aspectFit" />
+      <view class="card-title">识象明理</view>
+      <view class="card-subtitle">认识卦象，从基础开始</view>
+    </view>
+    <view class="card" bindtap="goToGame">
+      <image class="card-icon" src="../../images/card_game.png" mode="aspectFit" />
+      <view class="card-title">小小占卜师</view>
+      <view class="card-subtitle">摇一卦，看看今天的提醒</view>
+    </view>
+    <view class="card" bindtap="goToGardenWithStoryPrompt">
+      <image class="card-icon" src="../../images/card_story.png" mode="aspectFit" />
+      <view class="card-title">智慧故事</view>
+      <view class="card-subtitle">听听卦象背后的小故事</view>
+    </view>
+    <view class="card" bindtap="goToGarden">
+      <image class="card-icon" src="../../images/card_garden.png" mode="aspectFit" />
+      <view class="card-title">我的花园</view>
+      <view class="card-subtitle">看看你收集的智慧种子</view>
+    </view>
+  </view>
+</view>

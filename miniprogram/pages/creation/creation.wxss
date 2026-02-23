@@ -1,0 +1,196 @@
+/* pages/creation/creation.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #e6f7e6, #d4edda); /* 柔和的绿色渐变背景 */
+  font-family: 'KaiTi', cursive, sans-serif;
+  color: #333;
+  position: relative;
+}
+
+/* 顶部个人信息条 */
+.personal-info-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 40rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  border: 2rpx solid #a0d9b5;
+}
+
+.user-garden-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.garden-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #2e8b57;
+  margin-bottom: 5rpx;
+}
+
+.gua-stats {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 花园主视图 */
+.garden-view {
+  flex: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3列布局 */
+  gap: 30rpx;
+  padding: 20rpx;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+  margin-bottom: 40rpx;
+}
+
+.plant-spot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  border-radius: 15rpx;
+  background-color: #f0f0f0;
+  border: 2rpx dashed #ccc;
+  color: #999;
+  font-size: 28rpx;
+  transition: all 0.2s ease;
+}
+
+.plant-spot.unlocked {
+  border: none;
+  background-color: transparent;
+}
+
+.plant-spot.unlocked .plant-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plant-spot.locked {
+  background-color: #f0f0f0;
+  border: 2rpx dashed #a0d9b5;
+}
+
+.locked-hint {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #a0d9b5;
+  margin-bottom: 10rpx;
+}
+
+.locked-text {
+  font-size: 24rpx;
+  color: #a0d9b5;
+  text-align: center;
+}
+
+/* 侧边/底部工具栏 */
+.toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.toolbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx;
+  transition: transform 0.2s ease;
+}
+
+.toolbar-item:active {
+  transform: translateY(2rpx);
+}
+
+.toolbar-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.toolbar-text {
+  font-size: 26rpx;
+  color: #555;
+}
+
+/* 卦象回顾卡片 (弹窗) */
+.review-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.review-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  width: 80%;
+  max-width: 600rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.2);
+}
+
+.review-card-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #2e8b57;
+  margin-bottom: 20rpx;
+}
+
+.review-card-explanation {
+  font-size: 32rpx;
+  color: #555;
+  text-align: center;
+  margin-bottom: 20rpx;
+  line-height: 1.6;
+}
+
+.review-card-date {
+  font-size: 28rpx;
+  color: #888;
+  margin-bottom: 30rpx;
+}
+
+.close-button {
+  background-color: #a0d9b5;
+  color: white;
+  border-radius: 40rpx;
+  padding: 15rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,17 @@
+<!-- pages/aiStory/aiStory.wxml -->
+<view class="container">
+  <view class="header">
+    <text class="title">{{guaName}} 的智慧故事</text>
+  </view>
+
+  <view class="story-card">
+    <block wx:if="{{loadingStory}}">
+      <text class="loading-text">AI 正在努力生成故事中...</text>
+    </block>
+    <block wx:else>
+      <rich-text class="story-content" nodes="{{aiStory}}"></rich-text>
+    </block>
+  </view>
+
+  <view class="ai-tip">由 Kimi 智能生成，仅供参考与启发</view>
+</view>

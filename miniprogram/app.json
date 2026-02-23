@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/knowledge/knowledge",
+    "pages/game/game",
+    "pages/creation/creation",
+    "pages/knowledgeDetail/knowledgeDetail",
+    "pages/garden/garden",
+    "pages/aiStory/aiStory"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "卦象奇缘",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#409EFF",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab_home.png",
+        "selectedIconPath": "images/tab_home.png"
+      },
+      {
+        "pagePath": "pages/knowledge/knowledge",
+        "text": "识象",
+        "iconPath": "images/tab_knowledge.png",
+        "selectedIconPath": "images/tab_knowledge.png"
+      },
+      {
+        "pagePath": "pages/game/game",
+        "text": "占卜",
+        "iconPath": "images/tab_divination.png",
+        "selectedIconPath": "images/tab_divination.png"
+      },
+      {
+        "pagePath": "pages/garden/garden",
+        "text": "花园",
+        "iconPath": "images/tab_garden.png",
+        "selectedIconPath": "images/tab_garden.png"
+      }
+    ]
+  }
+}

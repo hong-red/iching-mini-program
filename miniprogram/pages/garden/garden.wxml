@@ -1,0 +1,22 @@
+<!-- pages/garden/garden.wxml -->
+<view class="container">
+  <view class="header" style="height: 206rpx; display: block; box-sizing: border-box; width: 424rpx">
+    <text class="title">小明的小花园</text>
+    <text class="stats">已解锁卦象：{{collectedGuas.length}} / 64 | 摇卦次数：{{shakeCount}}</text>
+  </view>
+
+  <view class="grid">
+    <block wx:for="{{collectedGuas}}" wx:key="name">
+      <view class="grid-item" bindtap="goToAIStory" data-guaname="{{item.name}}">
+        <view class="gua-image" style="width: 141rpx; height: 89rpx; display: flex; box-sizing: border-box">{{item.symbol}}</view>
+        <text class="gua-name" style="height: 39rpx; display: block; box-sizing: border-box">{{item.name}}</text>
+      </view>
+    </block>
+    <block wx:for="{{emptySlots}}" wx:key="index">
+      <view class="grid-item empty">
+        <view class="gua-image">?</view>
+        <text class="gua-name">学更多未解锁哦</text>
+      </view>
+    </block>
+  </view>
+</view>

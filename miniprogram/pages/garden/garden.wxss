@@ -1,0 +1,109 @@
+/* pages/garden/garden.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx; /* Increased padding for larger feel */
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f8fcfd, #eaf4f7); /* Blue gradient from knowledge page */
+  font-family: 'KaiTi', cursive, sans-serif;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  max-width: 700rpx; /* Adjusted max-width for larger layout */
+  text-align: center;
+  margin-bottom: 40rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 40rpx; /* Increased padding */
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08); /* Matching knowledge page header shadow */
+}
+
+.header .title {
+  font-size: 56rpx; /* Increased font size for larger feel */
+  font-weight: bold;
+  color: #4a90e2; /* Blue color from knowledge page */
+  margin-bottom: 10rpx;
+}
+
+.header .stats {
+  font-size: 32rpx; /* Increased font size */
+  color: #666;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns to match knowledge page */
+  gap: 30rpx; /* Increased gap */
+  width: 100%;
+  max-width: 700rpx; /* Adjusted max-width for larger layout */
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff; /* White background like gua-card */
+  border-radius: 20rpx;
+  padding: 30rpx 20rpx; /* Matching gua-card padding */
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.08); /* Matching gua-card shadow */
+  transition: transform 0.2s ease; /* Matching gua-card transition */
+  text-align: center; /* Center text */
+}
+
+.grid-item:active {
+  transform: translateY(2rpx); /* Matching gua-card active state */
+}
+
+.grid-item.empty {
+  opacity: 0.6;
+  background-color: rgba(240, 240, 240, 0.9); /* Light gray background */
+}
+
+.gua-image {
+  width: 80rpx; /* Adjusted size */
+  height: 80rpx; /* Adjusted size */
+  /* border-radius: 10rpx; */ /* Removed as it's a text symbol */
+  margin-bottom: 10rpx;
+  background-color: #f0f5f7; /* Light blue background from knowledge page search bar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx; /* Adjusted font size for the symbol */
+  font-weight: bold;
+  color: #4a90e2; /* Blue color for the symbol */
+}
+
+.gua-name {
+  font-size: 36rpx; /* Matching gua-card name font size */
+  font-weight: bold;
+  color: #333; /* Matching gua-card name color */
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Empty state prompt */
+.empty-state {
+  margin-top: 60rpx;
+  text-align: center;
+  color: #999;
+  font-size: 32rpx; /* Increased font size */
+}
+
+/* Load more button */
+.load-more {
+  margin-top: 40rpx;
+  padding: 20rpx 40rpx;
+  background-color: #4a90e2; /* Blue color from knowledge page */
+  color: #fff;
+  border-radius: 30rpx;
+  font-size: 32rpx; /* Increased font size */
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.15); /* Matching collect button shadow */
+  transition: background-color 0.2s ease;
+}
+
+.load-more:active {
+  background-color: #3a7bd5; /* Darker blue on active */
+}

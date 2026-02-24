@@ -7,7 +7,7 @@
   </view>
 
   <view style="width: 670rpx; margin-bottom: 20rpx; color:#7a756c; font-size:26rpx;">
-    仅展示头像与昵称，其余信息均为选填，可不填写
+    仅展示头像与昵称，其余信息均为选填，可不填写；联系方式等仅本地保存，不上传云端
   </view>
 
   <view class="form-card" style="height: 862rpx; display: block; box-sizing: border-box">

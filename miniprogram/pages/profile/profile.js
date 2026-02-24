@@ -53,7 +53,8 @@ Page({
     wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
     wx.setStorageSync('profile_honors', honors || []);
     wx.showToast({ title: '已保存', icon: 'success' });
-    this.writeProfileToDB({ nickname, phone, birthday, gender, avatarFileId: avatar, title, honors: honors || [] });
+    // 合规：云端仅保存头像、昵称、称号与荣誉列表
+    this.writeProfileToDB({ nickname, avatarFileId: avatar, title, honors: honors || [] });
   },
 
   changeAvatar() {
@@ -77,7 +78,9 @@ Page({
             this.setData({ avatar: fileID });
             const { nickname, phone, birthday, gender, title } = this.data;
             wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar: fileID, title });
-            this.writeProfileToDB({ nickname, phone, birthday, gender, avatarFileId: fileID, title });
+            // 合规：云端仅保存头像、昵称、称号与荣誉列表
+            const honors = wx.getStorageSync('profile_honors') || [];
+            this.writeProfileToDB({ nickname, avatarFileId: fileID, title, honors });
             wx.showToast({ title: '头像已更新', icon: 'success' });
             // 实时同步到上一页（如首页）
             try {
@@ -106,14 +109,15 @@ Page({
         const basicLocal = wx.getStorageSync('profile_basic') || {};
         const userInfo = wx.getStorageSync('userInfo') || {};
         const avatar = d.avatarFileId || basicLocal.avatar || userInfo.avatarUrl || this.data.avatar || '/images/avatar.png';
-        const nickname = d.nickname || this.data.nickname;
-        const phone = d.phone || this.data.phone;
-        const birthday = d.birthday || this.data.birthday;
-        const gender = d.gender || this.data.gender;
-        const title = d.title || this.data.title; // 优先使用数据库中的称号，或者保留本地称号
+        const nickname = d.nickname || basicLocal.nickname || this.data.nickname;
+        const title = d.title || basicLocal.title || this.data.title;
         const honorsFromDB = d.honors || [];
         const honorsLocal = wx.getStorageSync('profile_honors') || [];
         const honors = Array.from(new Set([].concat(honorsLocal, honorsFromDB, title ? [title] : [])));
+        // 本地可继续保留 phone/birthday/gender，但不从云端覆盖
+        const phone = basicLocal.phone || this.data.phone;
+        const birthday = basicLocal.birthday || this.data.birthday;
+        const gender = basicLocal.gender || this.data.gender;
         this.setData({ avatar, nickname, phone, birthday, gender, title, honors });
         wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
         wx.setStorageSync('profile_honors', honors);

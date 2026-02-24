@@ -5,7 +5,8 @@ Page({
     nickname: '微信用户',
     phone: '',
     birthday: '',
-    gender: '男'
+    gender: '',
+    honors: []
   },
 
   onLoad() {
@@ -19,13 +20,21 @@ Page({
   loadUserInfo() {
     const userInfo = wx.getStorageSync('userInfo') || {};
     const basic = wx.getStorageSync('profile_basic') || {};
+    const honors = wx.getStorageSync('profile_honors') || [];
+    // 如果存在单一称号字段，合并到荣誉列表中
+    if (basic.title && honors.indexOf(basic.title) === -1) {
+      honors.push(basic.title);
+      wx.setStorageSync('profile_honors', honors);
+    }
+    const avatar = basic.avatar || userInfo.avatarUrl || '/images/avatar.png';
     this.setData({
-      avatar: '/images/avatar.png', // 默认小女孩头像
+      avatar,
       nickname: basic.nickname || userInfo.nickName || '微信用户',
       phone: basic.phone || '',
       birthday: basic.birthday || '',
-      gender: basic.gender || '男',
-      title: basic.title || ''
+      gender: basic.gender || '',
+      title: basic.title || '',
+      honors
     });
     this.fetchProfileFromDB();
   },
@@ -36,14 +45,15 @@ Page({
   onGenderChange(e) { this.setData({ gender: e.detail.value }); },
 
   saveProfile() {
-    const { nickname, phone, birthday, gender, avatar, title } = this.data;
+    const { nickname, phone, birthday, gender, avatar, title, honors } = this.data;
     if (phone && !/^\d{11}$/.test(phone)) {
       wx.showToast({ title: '手机号需为11位数字', icon: 'none' });
       return;
     }
     wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
+    wx.setStorageSync('profile_honors', honors || []);
     wx.showToast({ title: '已保存', icon: 'success' });
-    this.writeProfileToDB({ nickname, phone, birthday, gender, avatarFileId: avatar, title });
+    this.writeProfileToDB({ nickname, phone, birthday, gender, avatarFileId: avatar, title, honors: honors || [] });
   },
 
   changeAvatar() {
@@ -69,6 +79,16 @@ Page({
             wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar: fileID, title });
             this.writeProfileToDB({ nickname, phone, birthday, gender, avatarFileId: fileID, title });
             wx.showToast({ title: '头像已更新', icon: 'success' });
+            // 实时同步到上一页（如首页）
+            try {
+              const pages = getCurrentPages();
+              if (pages && pages.length >= 2) {
+                const prev = pages[pages.length - 2];
+                if (prev && typeof prev.setData === 'function') {
+                  prev.setData({ avatar: fileID });
+                }
+              }
+            } catch (e) {}
           },
           fail: () => wx.showToast({ title: '上传失败', icon: 'none' })
         });
@@ -83,14 +103,20 @@ Page({
     db.collection('profiles').doc(openid).get({
       success: (res) => {
         const d = res.data || {};
-        const avatar = d.avatarFileId || this.data.avatar;
+        const basicLocal = wx.getStorageSync('profile_basic') || {};
+        const userInfo = wx.getStorageSync('userInfo') || {};
+        const avatar = d.avatarFileId || basicLocal.avatar || userInfo.avatarUrl || this.data.avatar || '/images/avatar.png';
         const nickname = d.nickname || this.data.nickname;
         const phone = d.phone || this.data.phone;
         const birthday = d.birthday || this.data.birthday;
         const gender = d.gender || this.data.gender;
         const title = d.title || this.data.title; // 优先使用数据库中的称号，或者保留本地称号
-        this.setData({ avatar, nickname, phone, birthday, gender, title });
+        const honorsFromDB = d.honors || [];
+        const honorsLocal = wx.getStorageSync('profile_honors') || [];
+        const honors = Array.from(new Set([].concat(honorsLocal, honorsFromDB, title ? [title] : [])));
+        this.setData({ avatar, nickname, phone, birthday, gender, title, honors });
         wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
+        wx.setStorageSync('profile_honors', honors);
       }
     });
   },

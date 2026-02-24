@@ -16,7 +16,7 @@
           <text class="notif-time">{{item.timeFormatted || '刚刚'}}</text>
         </view>
         <view class="notif-content">{{item.content}}</view>
-        <button class="action-btn" wx:if="{{item.action==='claim_64'}}" bindtap="claimAchievement" data-id="{{item.id}}">领取惊喜</button>
+        <button class="action-btn" wx:if="{{item.action==='claim_title'}}" bindtap="claimAchievement" data-id="{{item.id}}" data-title="{{item.titleToGrant}}">领取称号</button>
       </view>
     </view>
   </view>

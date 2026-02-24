@@ -1,31 +1,35 @@
 <!--miniprogram/pages/profile/profile.wxml-->
 <view class="container">
-  <view class="profile-card" style="width: 670rpx; height: 272rpx; display: flex; box-sizing: border-box">
-    <image class="avatar" src="{{avatar}}" mode="aspectFill" bindtap="changeAvatar"></image>
+  <view class="profile-card" style="width: 670rpx; height: 293rpx; display: flex; box-sizing: border-box">
+    <image class="avatar" src="{{avatar}}" mode="aspectFill" bindtap="changeAvatar" style="height: 125rpx; display: block; box-sizing: border-box"></image>
     <text class="hint">默认头像为小女孩，如需更换可后续支持</text>
     <text class="title-badge" wx:if="{{title}}">称号：{{title}}</text>
   </view>
 
-  <view class="form-card" style="height: 1083rpx; display: block; box-sizing: border-box">
+  <view style="width: 670rpx; margin-bottom: 20rpx; color:#7a756c; font-size:26rpx;">
+    仅展示头像与昵称，其余信息均为选填，可不填写
+  </view>
+
+  <view class="form-card" style="height: 862rpx; display: block; box-sizing: border-box">
     <view class="form-item">
-      <text class="label">用户名称</text>
+      <text class="label">用户昵称</text>
       <input class="input" placeholder="请输入昵称" value="{{nickname}}" bindinput="onNameInput" maxlength="20"/>
     </view>
 
     <view class="form-item">
-      <text class="label">绑定电话</text>
+      <text class="label">联系方式（选填）</text>
       <input class="input" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"/>
     </view>
 
     <view class="form-item">
-      <text class="label">出生日期</text>
+      <text class="label">出生日期（选填）</text>
       <picker mode="date" value="{{birthday}}" bindchange="onDateChange" start="1950-01-01" end="2030-12-31">
         <view class="picker-text">{{birthday || '请选择出生日期'}}</view>
       </picker>
     </view>
 
     <view class="form-item">
-      <text class="label">性别</text>
+      <text class="label">性别（选填）</text>
       <radio-group class="gender-group" bindchange="onGenderChange">
         <label class="gender-option">
           <radio value="男" checked="{{gender==='男'}}"/> 男
@@ -33,9 +37,31 @@
         <label class="gender-option">
           <radio value="女" checked="{{gender==='女'}}"/> 女
         </label>
+        <label class="gender-option">
+          <radio value="未选" checked="{{!gender || gender==='未选'}}"/> 不选择
+        </label>
       </radio-group>
     </view>
 
     <button class="save-btn" bindtap="saveProfile" style="height: 129rpx; display: block; box-sizing: border-box; left: -8rpx; top: 0rpx; width: 358rpx">保存资料</button>
+  </view>
+
+  <view class="form-card" style="margin-top: 20rpx;">
+    <view class="form-item" style="justify-content: flex-start;">
+      <text class="label">荣誉阁</text>
+    </view>
+    <view style="padding: 0 36rpx 20rpx; color:#6b5a45; font-size:28rpx;">
+      <view wx:if="{{honors && honors.length}}">
+        已获称号：{{honors.length}} 个
+      </view>
+      <view wx:else>
+        暂无称号，完成学习任务后可解锁
+      </view>
+      <view style="display:flex; flex-wrap: wrap; gap: 12rpx; margin-top: 12rpx;" wx:if="{{honors && honors.length}}">
+        <view style="padding: 8rpx 16rpx; background:#efe9db; border-radius: 24rpx; color:#6b5a45;" wx:for="{{honors}}" wx:key="*this">
+          {{item}}
+        </view>
+      </view>
+    </view>
   </view>
 </view>

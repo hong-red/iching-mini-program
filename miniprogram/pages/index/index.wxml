@@ -4,7 +4,7 @@
     <view class="header-left"></view>
     <view class="header-center">卦象奇缘</view>
     <view class="header-right">
-      <image class="avatar-placeholder" src="../../images/avatar.png" mode="aspectFill" bindtap="goToProfile"></image>
+      <image class="avatar-placeholder" src="{{avatar}}" mode="aspectFill" bindtap="goToProfile"></image>
       <view class="bell" bindtap="openNotifications">
         <image class="bell-placeholder" src="../../images/icon_bell.png" mode="aspectFit"></image>
         <view class="bell-dot" wx:if="{{hasUnread}}"></view>

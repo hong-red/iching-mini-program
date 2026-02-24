@@ -1,0 +1,19 @@
+# Node artifacts
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# WX miniprogram devtool artifacts
+project.private.config.json
+miniprogram/.idea/
+miniprogram/.vscode/
+
+# Build outputs
+dist/
+tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db

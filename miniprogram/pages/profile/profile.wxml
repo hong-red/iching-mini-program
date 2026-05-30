@@ -1,53 +1,55 @@
 <!--miniprogram/pages/profile/profile.wxml-->
-<view class="container">
-  <view class="profile-card" style="width: 670rpx; height: 293rpx; display: flex; box-sizing: border-box">
+<view class="container" style="height: 1479rpx; display: flex; box-sizing: border-box">
+  <view class="profile-card" style="width: 670rpx; height: 314rpx; display: flex; box-sizing: border-box">
     <image class="avatar" src="{{avatar}}" mode="aspectFill" bindtap="changeAvatar" style="height: 125rpx; display: block; box-sizing: border-box"></image>
     <text class="hint">默认头像为小女孩，如需更换可后续支持</text>
     <text class="title-badge" wx:if="{{title}}">称号：{{title}}</text>
   </view>
 
   <view style="width: 670rpx; margin-bottom: 20rpx; color:#7a756c; font-size:26rpx;">
-    仅展示头像与昵称，其余信息均为选填，可不填写；联系方式等仅本地保存，不上传云端
+    仅展示头像与昵称，其余信息均为选填，可不填写
   </view>
 
-  <view class="form-card" style="height: 862rpx; display: block; box-sizing: border-box">
+  <view class="form-card" style="height: 558rpx; display: block; box-sizing: border-box">
     <view class="form-item">
       <text class="label">用户昵称</text>
       <input class="input" placeholder="请输入昵称" value="{{nickname}}" bindinput="onNameInput" maxlength="20"/>
     </view>
 
-    <view class="form-item">
-      <text class="label">联系方式（选填）</text>
-      <input class="input" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"/>
-    </view>
+    <block wx:if="{{!isGuest}}">
+      <view class="form-item">
+        <text class="label">联系方式（选填）</text>
+        <input class="input" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" type="number" maxlength="11"/>
+      </view>
 
-    <view class="form-item">
-      <text class="label">出生日期（选填）</text>
-      <picker mode="date" value="{{birthday}}" bindchange="onDateChange" start="1950-01-01" end="2030-12-31">
-        <view class="picker-text">{{birthday || '请选择出生日期'}}</view>
-      </picker>
-    </view>
+      <view class="form-item">
+        <text class="label">出生日期（选填）</text>
+        <picker mode="date" value="{{birthday}}" bindchange="onDateChange" start="1950-01-01" end="2030-12-31">
+          <view class="picker-text">{{birthday || '请选择出生日期'}}</view>
+        </picker>
+      </view>
 
-    <view class="form-item">
-      <text class="label">性别（选填）</text>
-      <radio-group class="gender-group" bindchange="onGenderChange">
-        <label class="gender-option">
-          <radio value="男" checked="{{gender==='男'}}"/> 男
-        </label>
-        <label class="gender-option">
-          <radio value="女" checked="{{gender==='女'}}"/> 女
-        </label>
-        <label class="gender-option">
-          <radio value="未选" checked="{{!gender || gender==='未选'}}"/> 不选择
-        </label>
-      </radio-group>
-    </view>
+      <view class="form-item">
+        <text class="label">性别（选填）</text>
+        <radio-group class="gender-group" bindchange="onGenderChange">
+          <label class="gender-option">
+            <radio value="男" checked="{{gender==='男'}}"/> 男
+          </label>
+          <label class="gender-option">
+            <radio value="女" checked="{{gender==='女'}}"/> 女
+          </label>
+          <label class="gender-option">
+            <radio value="未选" checked="{{!gender || gender==='未选'}}"/> 不选择
+          </label>
+        </radio-group>
+      </view>
+    </block>
 
-    <button class="save-btn" bindtap="saveProfile" style="height: 129rpx; display: block; box-sizing: border-box; left: -8rpx; top: 0rpx; width: 358rpx">保存资料</button>
+    <button class="save-btn" bindtap="saveProfile" style="height: 127rpx; display: block; box-sizing: border-box; left: 0rpx; top: -14rpx; width: 358rpx; position: relative">保存资料</button>
   </view>
 
   <view class="form-card" style="margin-top: 20rpx;">
-    <view class="form-item" style="justify-content: flex-start;">
+    <view class="form-item" style="justify-content: flex-start; height: 70rpx; display: flex; box-sizing: border-box">
       <text class="label">荣誉阁</text>
     </view>
     <view style="padding: 0 36rpx 20rpx; color:#6b5a45; font-size:28rpx;">
@@ -63,5 +65,11 @@
         </view>
       </view>
     </view>
+  </view>
+
+  <view class="form-card" wx:if="{{!isGuest}}" style="margin-top: 20rpx; height: 187rpx; display: block; box-sizing: border-box">
+    <button class="save-btn" bindtap="logout" style="background: #efe9db; color: #0e0f0f; position: relative; left: -31rpx; top: -8rpx; height: 127rpx; display: block; box-sizing: border-box">  
+    退出登录
+    </button>
   </view>
 </view>

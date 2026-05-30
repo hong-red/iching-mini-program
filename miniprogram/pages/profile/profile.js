@@ -6,7 +6,8 @@ Page({
     phone: '',
     birthday: '',
     gender: '',
-    honors: []
+    honors: [],
+    isGuest: true
   },
 
   onLoad() {
@@ -27,6 +28,7 @@ Page({
       wx.setStorageSync('profile_honors', honors);
     }
     const avatar = basic.avatar || userInfo.avatarUrl || '/images/avatar.png';
+    const isGuest = !wx.getStorageSync('openid');
     this.setData({
       avatar,
       nickname: basic.nickname || userInfo.nickName || '微信用户',
@@ -34,7 +36,8 @@ Page({
       birthday: basic.birthday || '',
       gender: basic.gender || '',
       title: basic.title || '',
-      honors
+      honors,
+      isGuest
     });
     this.fetchProfileFromDB();
   },
@@ -53,7 +56,6 @@ Page({
     wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
     wx.setStorageSync('profile_honors', honors || []);
     wx.showToast({ title: '已保存', icon: 'success' });
-    // 合规：云端仅保存头像、昵称、称号与荣誉列表
     this.writeProfileToDB({ nickname, avatarFileId: avatar, title, honors: honors || [] });
   },
 
@@ -78,9 +80,7 @@ Page({
             this.setData({ avatar: fileID });
             const { nickname, phone, birthday, gender, title } = this.data;
             wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar: fileID, title });
-            // 合规：云端仅保存头像、昵称、称号与荣誉列表
-            const honors = wx.getStorageSync('profile_honors') || [];
-            this.writeProfileToDB({ nickname, avatarFileId: fileID, title, honors });
+            this.writeProfileToDB({ nickname, avatarFileId: fileID, title });
             wx.showToast({ title: '头像已更新', icon: 'success' });
             // 实时同步到上一页（如首页）
             try {
@@ -109,15 +109,14 @@ Page({
         const basicLocal = wx.getStorageSync('profile_basic') || {};
         const userInfo = wx.getStorageSync('userInfo') || {};
         const avatar = d.avatarFileId || basicLocal.avatar || userInfo.avatarUrl || this.data.avatar || '/images/avatar.png';
-        const nickname = d.nickname || basicLocal.nickname || this.data.nickname;
-        const title = d.title || basicLocal.title || this.data.title;
+        const nickname = d.nickname || this.data.nickname;
+        const phone = this.data.phone;
+        const birthday = this.data.birthday;
+        const gender = this.data.gender;
+        const title = d.title || this.data.title;
         const honorsFromDB = d.honors || [];
         const honorsLocal = wx.getStorageSync('profile_honors') || [];
         const honors = Array.from(new Set([].concat(honorsLocal, honorsFromDB, title ? [title] : [])));
-        // 本地可继续保留 phone/birthday/gender，但不从云端覆盖
-        const phone = basicLocal.phone || this.data.phone;
-        const birthday = basicLocal.birthday || this.data.birthday;
-        const gender = basicLocal.gender || this.data.gender;
         this.setData({ avatar, nickname, phone, birthday, gender, title, honors });
         wx.setStorageSync('profile_basic', { nickname, phone, birthday, gender, avatar, title });
         wx.setStorageSync('profile_honors', honors);
@@ -132,5 +131,15 @@ Page({
     db.collection('profiles').doc(openid).set({
       data: Object.assign({}, payload, { updatedAt: new Date() })
     });
+  },
+
+  logout(){
+    wx.removeStorageSync('openid');
+    wx.removeStorageSync('userInfo');
+    this.setData({ isGuest: true });
+    wx.showToast({ title: '已退出', icon: 'success' });
+    setTimeout(() => {
+      wx.reLaunch({ url: '/pages/index/index' });
+    }, 300);
   }
 });

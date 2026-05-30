@@ -44,9 +44,24 @@ Page({
   },
 
   goToProfile() {
-    wx.navigateTo({
-      url: '/pages/profile/profile'
-    });
+    const openid = wx.getStorageSync('openid');
+    if (!openid){
+      wx.showModal({
+        title: '登录提示',
+        content: '登录后可更换头像与同步资料，是否前往登录？',
+        confirmText: '去登录',
+        cancelText: '稍后',
+        success: (res) => {
+          if (res.confirm){
+            wx.navigateTo({ url: '/pages/login/login' });
+          } else {
+            wx.navigateTo({ url: '/pages/profile/profile' });
+          }
+        }
+      });
+      return;
+    }
+    wx.navigateTo({ url: '/pages/profile/profile' });
   },
 
   openNotifications(){
